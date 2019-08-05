@@ -4,6 +4,9 @@ import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import Home from './home/Home';
+import Threads from './threads/Threads';
+import Profiles from './profiles/Profiles';
 
 const routing = (
   <Router>
@@ -19,9 +22,9 @@ const routing = (
           <Link to="/threads">Threads</Link>
         </li>
       </ul>
-      <Route exact path="/" component={App} />
-      <Route path="/profiles/" component={App} />
-      <Route path="/threads/" component={App} />
+      <Route exact path="/" component={Home} />
+      <Route path="/profiles/" component={Profiles} />
+      <Route path="/threads/" component={Threads} />
     </div>
   </Router>
 );
