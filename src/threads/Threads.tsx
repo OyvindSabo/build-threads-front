@@ -1,10 +1,12 @@
 import React from 'react';
+import Spinner from '../components/spinner/Spinner';
 import logo from '../logo.svg';
 
 const Threads: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
+        <Spinner />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/threads/Threads.tsx</code> and save to reload.
