@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { GREY } from '../../constants/colors';
 
-const Spinner = () => (
-  <StyledSpinner viewBox="0 0 50 50">
+const Spinner = ({ color }: { color?: string }) => (
+  <StyledSpinner color={color} viewBox="0 0 50 50">
     <circle
       className="path"
       cx="25"
@@ -16,12 +17,9 @@ const Spinner = () => (
 
 const StyledSpinner = styled.svg`
   animation: rotate 2s linear infinite;
-  margin: -25px 0 0 -25px;
-  width: 50px;
-  height: 50px;
 
   & .path {
-    stroke: #5652bf;
+    stroke: ${({ color }: { color?: string }) => (color ? color : GREY)};
     stroke-linecap: round;
     animation: dash 1.5s ease-in-out infinite;
   }
