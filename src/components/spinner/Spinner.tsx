@@ -2,18 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { GREY } from '../../constants/colors';
 
-const Spinner = ({ color }: { color?: string }) => (
-  <StyledSpinner color={color} viewBox="0 0 50 50">
-    <circle
-      className="path"
-      cx="25"
-      cy="25"
-      r="20"
-      fill="none"
-      strokeWidth="4"
-    />
-  </StyledSpinner>
-);
+const Center = styled.div`
+  margin: auto;
+  width: 25%;
+`;
 
 const StyledSpinner = styled.svg`
   animation: rotate 2s linear infinite;
@@ -44,5 +36,24 @@ const StyledSpinner = styled.svg`
     }
   }
 `;
+
+interface SpinnerProps {
+  color?: string;
+}
+
+const Spinner = ({ color }: SpinnerProps) => (
+  <Center>
+    <StyledSpinner color={color} viewBox="0 0 50 50">
+      <circle
+        className="path"
+        cx="25"
+        cy="25"
+        r="20"
+        fill="none"
+        strokeWidth="4"
+      />
+    </StyledSpinner>
+  </Center>
+);
 
 export default Spinner;

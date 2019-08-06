@@ -1,26 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect, FunctionComponent } from 'react';
 import Spinner from '../components/spinner/Spinner';
-import logo from '../logo.svg';
+import ThreadSummary from '../components/threadSummary/ThreadSummary';
 
-const Threads: React.FC = () => {
+const getThreads = () => [
+  {
+    id: 1,
+    title: 'Chevrolet Corvette project',
+  },
+  {
+    id: 2,
+    title: 'BMW M3 project',
+  },
+];
+
+const Threads: FunctionComponent = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingFailed, setLoadingFailed] = useState(false);
+  const [threads, setThreads] = useState<any[]>([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setThreads(getThreads());
+      setIsLoading(false);
+    }, 2000);
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <Spinner />
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/threads/Threads.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {isLoading && <Spinner />}
+      {loadingFailed && <div>Loading failed</div>}
+      {threads.map(thread => (
+        <ThreadSummary title={thread.title} id={thread.id} />
+      ))}
+    </>
   );
 };
 
