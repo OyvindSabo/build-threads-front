@@ -10,6 +10,7 @@ const Navigator = styled.div`
   width: 180px;
   left: 0;
   top: 0;
+  z-index: 1;
 `;
 
 export default Navigator;
