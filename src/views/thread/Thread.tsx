@@ -1,10 +1,10 @@
 import React, { useState, useEffect, FunctionComponent } from 'react';
-import Spinner from '../components/spinner/Spinner';
-import { API_URL } from '../constants/api';
-import PostComponent from '../components/postComponent/PostComponent';
-import { Thread, ApiError, Post } from '../types';
-import TopBar from '../components/topBar/TopBar';
-import MainContainer from '../components/mainContainer/MainContainer';
+import Spinner from '../../components/spinner/Spinner';
+import { API_URL } from '../../constants/api';
+import PostComponent from '../../components/postComponent/PostComponent';
+import { Thread, ApiError, Post } from '../../types';
+import TopBar from '../../components/topBar/TopBar';
+import MainContainer from '../../components/mainContainer/MainContainer';
 
 interface ThreadViewProps {
   match: {

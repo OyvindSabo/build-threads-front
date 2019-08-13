@@ -1,9 +1,9 @@
 import React, { useState, useEffect, FunctionComponent } from 'react';
-import Spinner from '../components/spinner/Spinner';
-import ThreadSummary from '../components/threadSummary/ThreadSummary';
-import { API_URL } from '../constants/api';
-import MainContainer from '../components/mainContainer/MainContainer';
-import TopBar from '../components/topBar/TopBar';
+import Spinner from '../../components/spinner/Spinner';
+import ThreadSummary from '../../components/threadSummary/ThreadSummary';
+import { API_URL } from '../../constants/api';
+import MainContainer from '../../components/mainContainer/MainContainer';
+import TopBar from '../../components/topBar/TopBar';
 
 const ThreadsView: FunctionComponent = () => {
   const [isLoading, setIsLoading] = useState(true);

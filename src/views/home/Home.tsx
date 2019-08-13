@@ -1,13 +1,13 @@
 import React from 'react';
-import logo from '../logo.svg';
+import logo from '../../logo.svg';
 
-const Profiles: React.FC = () => {
+const Home: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/profiles/Profiles.tsx</code> and save to reload.
+          Edit <code>src/home/Home.tsx</code> and save to reload.
         </p>
         <a
           className="App-link"
@@ -22,4 +22,4 @@ const Profiles: React.FC = () => {
   );
 };
 
-export default Profiles;
+export default Home;

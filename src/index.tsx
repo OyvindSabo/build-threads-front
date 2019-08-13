@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import Home from './home/Home';
-import ThreadsView from './threads/Threads';
-import Profiles from './profiles/Profiles';
+import Home from './views/home/Home';
+import ThreadsView from './views/threads/Threads';
+import Profiles from './views/profiles/Profiles';
 import Navigator from './components/navigator/Navigator';
-import ThreadView from './thread/Thread';
-import { Thread, User, Post } from './types';
-import Profile from './profile/Profile';
+import ThreadView from './views/thread/Thread';
+import Profile from './views/profile/Profile';
+import Login from './views/login/Login';
 
 const Routing = () => {
   const [user, setUser] = useState<{
@@ -66,6 +66,7 @@ const Routing = () => {
         </ul>
       </Navigator>
       <Route exact path="/" component={Home} />
+      <Route exact path="/login/" component={Login} />
       <Route exact path="/profiles/" component={Profiles} />
       <Route exact path="/profiles/:userId/" component={Profile} />
       <Route exact path="/threads/" component={ThreadsView} />

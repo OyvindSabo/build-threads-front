@@ -1,12 +1,10 @@
 import React, { useState, useEffect, FunctionComponent } from 'react';
-import Spinner from '../components/spinner/Spinner';
-import { API_URL } from '../constants/api';
-import PostComponent from '../components/postComponent/PostComponent';
-import { Thread, ApiError, Post, User } from '../types';
-import TopBar from '../components/topBar/TopBar';
-import MainContainer from '../components/mainContainer/MainContainer';
-import ProfilePicture from '../components/profilePicture/ProfilePicture';
-import ThreadSummary from '../components/threadSummary/ThreadSummary';
+import { User, Thread, ApiError } from '../../types';
+import { API_URL } from '../../constants/api';
+import TopBar from '../../components/topBar/TopBar';
+import MainContainer from '../../components/mainContainer/MainContainer';
+import ProfilePicture from '../../components/profilePicture/ProfilePicture';
+import ThreadSummary from '../../components/threadSummary/ThreadSummary';
 
 interface ProfileProps {
   match: {
