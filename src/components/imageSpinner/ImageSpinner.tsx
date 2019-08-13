@@ -10,9 +10,7 @@ interface ImageSpinnerProps {
 const BoundingBox = styled.div<ImageSpinnerProps>`
   display: inline-block;
   height: ${({ height }) => height}px;
-  max-height: ${({ height }) => height}px;
   width: ${({ width }) => width}px;
-  max-width: ${({ width }) => width}px;
 `;
 
 const ImageSpinner = ({ height, width }: ImageSpinnerProps) => (

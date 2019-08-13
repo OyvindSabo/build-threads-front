@@ -1,24 +1,74 @@
-import React from 'react';
-import logo from '../logo.svg';
+import React, { useState, useEffect, FunctionComponent } from 'react';
+import Spinner from '../components/spinner/Spinner';
+import { API_URL } from '../constants/api';
+import PostComponent from '../components/postComponent/PostComponent';
+import { Thread, ApiError, Post, User } from '../types';
+import TopBar from '../components/topBar/TopBar';
+import MainContainer from '../components/mainContainer/MainContainer';
+import ProfilePicture from '../components/profilePicture/ProfilePicture';
+import ThreadSummary from '../components/threadSummary/ThreadSummary';
 
-const Profile: React.FC = () => {
+interface ProfileProps {
+  match: {
+    params: {
+      userId: number;
+    };
+  };
+}
+
+const Profile: FunctionComponent<ProfileProps> = ({ match }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingFailed, setLoadingFailed] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [threads, setThreads] = useState<Thread[]>([]);
+
+  const { userId } = match.params;
+  useEffect(() => {
+    fetch(`${API_URL}/wp-json/wp/v2/users/${userId}`).then(response =>
+      response
+        .json()
+        .then((formattedResponse: User | ApiError) => {
+          if ((formattedResponse as ApiError).message) {
+            throw new Error((formattedResponse as ApiError).message);
+          }
+          setUser(formattedResponse as User);
+          return formattedResponse as User;
+          //setIsLoading(false);
+        })
+        .then(user => {
+          fetch(`${API_URL}/wp-json/wp/v2/threads?author=${user.id}`).then(
+            response =>
+              response
+                .json()
+                .then(formattedResponse => {
+                  if ((formattedResponse as ApiError).message) {
+                    throw new Error((formattedResponse as ApiError).message);
+                  }
+                  setThreads(formattedResponse);
+                  setIsLoading(false);
+                })
+                .catch(error => {
+                  setLoadingFailed(true);
+                })
+          );
+        })
+        .catch(error => {
+          setLoadingFailed(true);
+        })
+    );
+  }, [userId]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/profile/Profile.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <TopBar title={user ? user.name : 'Loading'} />
+      <MainContainer>
+        <ProfilePicture userId={userId} size={96} />
+        {loadingFailed && <div>Loading failed</div>}
+        {threads.map(thread => (
+          <ThreadSummary thread={thread} />
+        ))}
+      </MainContainer>
+    </>
   );
 };
 

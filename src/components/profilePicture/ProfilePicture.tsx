@@ -1,28 +1,24 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
-import styled from 'styled-components';
-import Shadow from '../shadow/Shadow';
 import { Link } from 'react-router-dom';
-import { Thread, User, ApiError } from '../../types';
+import { User, ApiError } from '../../types';
 import { API_URL } from '../../constants/api';
-import ProfilePicture from '../profilePicture/ProfilePicture';
+import ImageSpinner from '../imageSpinner/ImageSpinner';
 
-const ShadowBox = styled(Shadow)`
-  margin: 20px;
-  padding: 20px;
-  background: white;
-`;
-
-interface ThreadSummaryProps {
-  thread: Thread;
+interface ProfilePictureProps {
+  userId: number;
+  size: 24 | 48 | 96;
 }
 
-const ThreadSummary: FunctionComponent<ThreadSummaryProps> = ({ thread }) => {
+const ProfilePicture: FunctionComponent<ProfilePictureProps> = ({
+  userId,
+  size,
+}: ProfilePictureProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingFailed, setLoadingFailed] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    fetch(`${API_URL}/wp-json/wp/v2/users/${thread.author}`).then(response =>
+    fetch(`${API_URL}/wp-json/wp/v2/users/${userId}`).then(response =>
       response
         .json()
         .then((formattedResponse: User | ApiError) => {
@@ -36,16 +32,17 @@ const ThreadSummary: FunctionComponent<ThreadSummaryProps> = ({ thread }) => {
           setLoadingFailed(true);
         })
     );
-  }, [thread]);
+  }, [userId]);
 
   return (
-    <Link to={`/threads/${thread.id}`}>
-      <ShadowBox>
-        <ProfilePicture userId={thread.author} size={48} />
-        {thread.title.rendered}
-      </ShadowBox>
+    <Link to={`/profiles/${userId}`}>
+      {isLoading ? (
+        <ImageSpinner height={size} width={size} />
+      ) : (
+        <img src={user!.avatar_urls[size]} alt="User Avatar" />
+      )}
     </Link>
   );
 };
 
-export default ThreadSummary;
+export default ProfilePicture;

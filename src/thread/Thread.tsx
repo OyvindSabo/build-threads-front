@@ -29,7 +29,6 @@ const ThreadView: FunctionComponent<ThreadViewProps> = ({ match }) => {
         .then((formattedThread: Thread | ApiError) => {
           // The impotant parts are title.rendered: string, featured_media: number, slug: string, and author? autor should be used to determine if posts are comments or part of the thread.
           console.log('formattedThread: ', formattedThread);
-          setIsLoading(false);
           if ((formattedThread as ApiError).message) {
             throw new Error((formattedThread as ApiError).message);
           }
@@ -67,7 +66,7 @@ const ThreadView: FunctionComponent<ThreadViewProps> = ({ match }) => {
     <>
       <TopBar title={thread ? thread.title.rendered : 'Loading'} />
       <MainContainer>
-        {/*isLoading && <Spinner />*/}
+        {isLoading && <Spinner />}
         {loadingFailed && <div>Loading failed</div>}
         {posts.map(post => (
           <PostComponent post={post} />

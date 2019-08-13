@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { GREY } from '../../constants/colors';
 import { Post } from '../../types';
 import Shadow from '../shadow/Shadow';
+import ProfilePicture from '../profilePicture/ProfilePicture';
 
 const Box = styled(Shadow)`
   margin: 20px;
@@ -32,6 +33,7 @@ interface PostComponentProps {
 const PostComponent: FunctionComponent<PostComponentProps> = ({ post }) => {
   return (
     <Box>
+      <ProfilePicture userId={post.author} size={48} />
       <h1>{post.title.rendered}</h1>
       <p>{post.content.rendered}</p>
     </Box>
