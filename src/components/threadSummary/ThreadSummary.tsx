@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
-import { GREY } from '../../constants/colors';
+import Shadow from '../shadow/Shadow';
+import { Link } from 'react-router-dom';
 
-const Box = styled.div`
+const ShadowBox = styled(Shadow)`
   margin: 20px;
   padding: 20px;
-  box-shadow: 0 0 5px ${GREY};
   background: white;
 `;
 
@@ -19,9 +19,9 @@ const ThreadSummary: FunctionComponent<ThreadSummaryProps> = ({
   id,
 }) => {
   return (
-    <a href={`/threads/${id}`}>
-      <Box>{title}</Box>
-    </a>
+    <Link to={`/threads/${id}`}>
+      <ShadowBox>{title}</ShadowBox>
+    </Link>
   );
 };
 

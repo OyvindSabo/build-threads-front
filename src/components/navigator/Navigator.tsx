@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { GREY } from '../../constants/colors';
+import { BLUE_GREY } from '../../constants/colors';
+import Shadow from '../shadow/Shadow';
 
-const Navigator = styled.div`
+const Navigator = styled(Shadow)`
   background: ${({ backgroundColor }: { backgroundColor?: string }) =>
-    backgroundColor ? backgroundColor : GREY};
-  box-shadow: 0 0 5px ${GREY};
+    backgroundColor ? backgroundColor : BLUE_GREY[800]};
   position: fixed;
   height: 100vh;
   width: 180px;

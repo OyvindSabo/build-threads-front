@@ -4,7 +4,6 @@ import { API_URL } from '../constants/api';
 import PostComponent from '../components/postComponent/PostComponent';
 import { Thread, ThreadResponse, ApiError } from '../types';
 import TopBar from '../components/topBar/TopBar';
-import TopBarSpacer from '../components/topBar/TopBarSpacer';
 import MainContainer from '../components/mainContainer/MainContainer';
 
 interface ThreadViewProps {
@@ -64,7 +63,6 @@ const ThreadView: FunctionComponent<ThreadViewProps> = ({ match }) => {
   return (
     <>
       <TopBar title={thread ? thread.title.rendered : 'Loading'} />
-      <TopBarSpacer />
       <MainContainer>
         {isLoading && <Spinner />}
         {loadingFailed && <div>Loading failed</div>}

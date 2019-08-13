@@ -2,11 +2,11 @@ import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import { GREY } from '../../constants/colors';
 import { Post } from '../../types';
+import Shadow from '../shadow/Shadow';
 
-const Box = styled.div`
+const Box = styled(Shadow)`
   margin: 20px;
   padding: 20px;
-  box-shadow: 0 0 5px ${GREY};
   background: white;
 
   animation-duration: 0.5s;

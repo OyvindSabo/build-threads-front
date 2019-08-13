@@ -34,4 +34,15 @@ export const BROWN = '#795548';
 
 export const GREY = '#9E9E9E';
 
-export const BLUE_GREY = '#607D8B';
+export const BLUE_GREY = {
+  50: '#ECEFF1',
+  100: '#CFD8DC',
+  200: '#B0BEC5',
+  300: '#90A4AE',
+  400: '#78909C',
+  500: '#607D8B',
+  600: '#546E7A',
+  700: '#455A64',
+  800: '#37474F',
+  900: '#263238',
+};

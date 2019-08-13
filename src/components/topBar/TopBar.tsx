@@ -1,17 +1,22 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
-import logo from './logo.svg';
 import { GREY } from '../../constants/colors';
 import MainContainer from '../mainContainer/MainContainer';
+import Spacer from '../spacer/Spacer';
+import { PADDING, FONT_SIZE } from '../../constants/sizes';
+import Shadow from '../shadow/Shadow';
 
-const Bar = styled.div`
+const ShadowBar = styled(Shadow)`
   box-shadow: 0 0 5px ${GREY};
   position: fixed;
   background: white;
-  padding: 20px;
   top: 0;
   left: 0;
   right: 0;
+`;
+
+const Padding = styled.div`
+  padding: ${PADDING}px;
 `;
 
 interface TopBarProps {
@@ -19,10 +24,16 @@ interface TopBarProps {
 }
 
 const TopBar: FunctionComponent<TopBarProps> = ({ title }) => {
+  const barHeight = 2 * PADDING + FONT_SIZE;
   return (
-    <Bar>
-      <MainContainer>{title}</MainContainer>
-    </Bar>
+    <>
+      <ShadowBar>
+        <MainContainer>
+          <Padding>{title}</Padding>
+        </MainContainer>
+      </ShadowBar>
+      <Spacer height={barHeight} />
+    </>
   );
 };
 
