@@ -31,7 +31,7 @@ const ThreadsView: FunctionComponent = () => {
         {isLoading && <Spinner />}
         {loadingFailed && <div>Loading failed</div>}
         {threads.map(thread => (
-          <ThreadSummary title={thread.title.rendered} id={thread.id} />
+          <ThreadSummary thread={thread} />
         ))}
       </MainContainer>
     </>

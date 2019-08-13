@@ -4,15 +4,13 @@ import { BLUE_GREY } from '../../constants/colors';
 
 const Center = styled.div`
   margin: auto;
-  width: 25%;
 `;
 
 const StyledSpinner = styled.svg`
   animation: rotate 2s linear infinite;
 
   & .path {
-    stroke: ${({ color }: { color?: string }) =>
-      color ? color : BLUE_GREY[800]};
+    stroke: ${BLUE_GREY[800]};
     stroke-linecap: round;
     animation: dash 1.5s ease-in-out infinite;
   }
@@ -38,13 +36,9 @@ const StyledSpinner = styled.svg`
   }
 `;
 
-interface SpinnerProps {
-  color?: string;
-}
-
-const Spinner = ({ color }: SpinnerProps) => (
+const Spinner = () => (
   <Center>
-    <StyledSpinner color={color} viewBox="0 0 50 50">
+    <StyledSpinner viewBox="0 0 50 50">
       <circle
         className="path"
         cx="25"
