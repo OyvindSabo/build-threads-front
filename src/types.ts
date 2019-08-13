@@ -63,8 +63,6 @@ export type Thread = {
   };
 };
 
-export type ThreadResponse = Thread | ApiError;
-
 export type Post = {
   id: number;
   date: Date;
@@ -167,6 +165,33 @@ export type Post = {
         name: string;
         href: string;
         templated: boolean;
+      }
+    ];
+  };
+};
+
+export type User = {
+  id: number;
+  name: string;
+  url: string;
+  description: string;
+  link: string;
+  slug: string;
+  avatar_urls: {
+    '24': string;
+    '48': string;
+    '96': string;
+  };
+  meta: any[];
+  _links: {
+    self: [
+      {
+        href: string;
+      }
+    ];
+    collection: [
+      {
+        href: string;
       }
     ];
   };
