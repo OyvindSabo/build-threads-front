@@ -1,17 +1,11 @@
-import React, { useState, FunctionComponent } from 'react';
+import React, { useState } from 'react';
 import TopBar from '../../components/topBar/TopBar';
 import MainContainer from '../../components/mainContainer/MainContainer';
 import { INPUT_PADDING } from '../../constants/sizes';
+import { currentUser } from '../../services/authentication';
 
-interface ProfileProps {
-  match: {
-    params: {
-      userId: number;
-    };
-  };
-}
-
-const Login: FunctionComponent<ProfileProps> = ({ match }) => {
+const Login: React.FC = () => {
+  //const { login } = location.state;
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   return (
@@ -35,6 +29,11 @@ const Login: FunctionComponent<ProfileProps> = ({ match }) => {
             onChange={event => setPassword(event.target.value)}
             placeholder={'Password'}
           />
+        </div>
+        <div style={{ textAlign: 'center' }}>
+          <button onClick={() => currentUser.login(username, password)}>
+            Login
+          </button>
         </div>
       </MainContainer>
     </>

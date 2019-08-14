@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
-import { GREY } from '../../constants/colors';
 import { Post } from '../../types';
 import Shadow from '../shadow/Shadow';
 import ProfilePicture from '../profilePicture/ProfilePicture';

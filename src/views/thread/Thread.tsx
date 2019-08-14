@@ -60,7 +60,7 @@ const ThreadView: FunctionComponent<ThreadViewProps> = ({ match }) => {
           setLoadingFailed(true);
         })
     );
-  }, [match]);
+  }, [threadId]);
 
   return (
     <>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { User, ApiError } from '../../types';
 import { API_URL } from '../../constants/api';
 import ImageSpinner from '../imageSpinner/ImageSpinner';
+import { getUserByUserId } from '../../services/apiServices';
 
 interface ProfilePictureProps {
   userId: number;
@@ -18,6 +19,7 @@ const ProfilePicture: FunctionComponent<ProfilePictureProps> = ({
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
+    getUserByUserId(userId);
     fetch(`${API_URL}/wp-json/wp/v2/users/${userId}`).then(response =>
       response
         .json()
@@ -36,10 +38,10 @@ const ProfilePicture: FunctionComponent<ProfilePictureProps> = ({
 
   return (
     <Link to={`/profiles/${userId}`}>
-      {isLoading ? (
-        <ImageSpinner height={size} width={size} />
-      ) : (
+      {user ? (
         <img src={user!.avatar_urls[size]} alt="User Avatar" />
+      ) : (
+        <ImageSpinner height={size} width={size} />
       )}
     </Link>
   );

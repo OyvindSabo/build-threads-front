@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
@@ -10,41 +10,30 @@ import Navigator from './components/navigator/Navigator';
 import ThreadView from './views/thread/Thread';
 import Profile from './views/profile/Profile';
 import Login from './views/login/Login';
+import { currentUser } from './services/authentication';
 
 const Routing = () => {
-  const [user, setUser] = useState<{
-    id?: number;
-    username?: string;
-    password?: string;
-  }>({
-    id: undefined,
-    username: undefined, // Should be fetched from localstorage
-    password: undefined, // Should be fetched from localStorage
-  });
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
+    currentUser.isAuthenticated()
+  );
+  useEffect(() => {
+    window.addEventListener('AUTHENTICATION_UPDATE', () =>
+      setIsAuthenticated(currentUser.isAuthenticated())
+    );
 
-  const isAuthenticated = () => !!(user.id && user.username && user.password);
-  const login = (id: number, username: string, password: string) => {
-    setUser({
-      id,
-      username,
-      password,
-    });
-  };
-
-  const logout = () => {
-    setUser({
-      id: undefined,
-      username: undefined,
-      password: undefined,
-    });
-  };
+    return () => {
+      window.removeEventListener('AUTHENTICATION_UPDATE', () =>
+        setIsAuthenticated(currentUser.isAuthenticated())
+      );
+    };
+  }, []);
   return (
     <Router>
       <Navigator>
         <ul>
           <li>
-            {isAuthenticated() ? (
-              <button onClick={logout}>Logout</button>
+            {isAuthenticated ? (
+              <button onClick={currentUser.logout}>Logout</button>
             ) : (
               <Link to="/login">Login</Link>
             )}
@@ -52,9 +41,11 @@ const Routing = () => {
           <li>
             <Link to="/">Home</Link>
           </li>
-          {isAuthenticated() && (
+          {isAuthenticated && (
             <li>
-              <Link to={`/profiles/${user.id}`}>My profile</Link>
+              <Link to={`/profiles/${currentUser.getUser().id}`}>
+                My profile
+              </Link>
             </li>
           )}
           <li>
