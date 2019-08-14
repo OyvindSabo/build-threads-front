@@ -10,7 +10,9 @@ export const INDIGO = '#3F51B5';
 
 export const BLUE = '#2196F3';
 
-export const LIGHT_BLUE = '#03A9F4';
+export const LIGHT_BLUE = {
+  500: '#03A9F4',
+};
 
 export const CYAN = '#00BCD4';
 
@@ -46,3 +48,5 @@ export const BLUE_GREY = {
   800: '#37474F',
   900: '#263238',
 };
+
+export const INPUT_COLOR = BLUE_GREY[50];

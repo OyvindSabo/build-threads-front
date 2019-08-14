@@ -7,9 +7,9 @@ class User {
   _authenticationUpdateEvent: Event;
   constructor() {
     this._user = {
-      id: undefined,
-      username: undefined, // Should be fetched from localStorage
-      password: undefined, // Should be fetched from localStorage
+      id: parseInt(localStorage.getItem('id') || '0') || undefined,
+      username: localStorage.getItem('username') || undefined,
+      password: localStorage.getItem('password') || undefined,
     };
     this._authenticationUpdateEvent = new Event('AUTHENTICATION_UPDATE');
   }
@@ -23,7 +23,9 @@ class User {
       username,
       password,
     });
-    console.log('user: ', this._user);
+    localStorage.setItem('id', `${this._user.id}`);
+    localStorage.setItem('username', `${this._user.username}`);
+    localStorage.setItem('password', `${this._user.password}`);
     window.dispatchEvent(this._authenticationUpdateEvent);
   };
   logout = () => {
@@ -32,6 +34,9 @@ class User {
       username: undefined,
       password: undefined,
     });
+    localStorage.removeItem('id');
+    localStorage.removeItem('username');
+    localStorage.removeItem('password');
     window.dispatchEvent(this._authenticationUpdateEvent);
   };
 }
