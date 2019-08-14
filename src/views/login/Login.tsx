@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FunctionComponent } from 'react';
 import TopBar from '../../components/topBar/TopBar';
 import { INPUT_PADDING } from '../../constants/sizes';
 import { currentUser } from '../../services/authentication';
@@ -35,7 +35,11 @@ const Button = styled.div`
   cursor: pointer;
 `;
 
-const Login: React.FC = () => {
+interface LoginProps {
+  history: any[];
+}
+
+const Login: FunctionComponent<LoginProps> = ({ history }) => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   return (
@@ -58,7 +62,16 @@ const Login: React.FC = () => {
               onChange={event => setPassword(event.target.value)}
               placeholder={'Password'}
             />
-            <Button onClick={() => currentUser.login(username, password)}>
+            <Button
+              onClick={() => {
+                currentUser
+                  .login(username, password)
+                  .then(() => {
+                    history.push('/dashboard');
+                  })
+                  .catch(error => {});
+              }}
+            >
               Login
             </Button>
           </InputWrapper>

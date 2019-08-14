@@ -16,7 +16,7 @@ class User {
   getUser = () => this._user;
   isAuthenticated = () =>
     !!(this._user.id && this._user.username && this._user.password);
-  login = (username: string, password: string) => {
+  async login(username: string, password: string) {
     console.log('user');
     Object.assign(this._user, {
       id: 1, // id should be fetched from user api based on username
@@ -27,7 +27,7 @@ class User {
     localStorage.setItem('username', `${this._user.username}`);
     localStorage.setItem('password', `${this._user.password}`);
     window.dispatchEvent(this._authenticationUpdateEvent);
-  };
+  }
   logout = () => {
     Object.assign(this._user, {
       id: undefined,
