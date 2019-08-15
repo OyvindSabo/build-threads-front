@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BLUE_GREY } from '../../constants/colors';
+import { SPINNER_COLOR } from '../../constants/colors';
 
 const Center = styled.div`
   margin: auto;
@@ -10,7 +10,7 @@ const StyledSpinner = styled.svg`
   animation: rotate 2s linear infinite;
 
   & .path {
-    stroke: ${BLUE_GREY[800]};
+    stroke: ${SPINNER_COLOR};
     stroke-linecap: round;
     animation: dash 1.5s ease-in-out infinite;
   }

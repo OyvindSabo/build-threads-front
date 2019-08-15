@@ -62,6 +62,13 @@ const Profile: FunctionComponent<ProfileProps> = ({ match }) => {
       <MainContainer>
         <ProfilePicture userId={userId} size={96} />
         {loadingFailed && <div>Loading failed</div>}
+        {user && (
+          <h3>
+            {threads.length
+              ? `${user.name}'s threads:`
+              : `${user.name} has not yet created a thread😢`}
+          </h3>
+        )}
         {threads.map(thread => (
           <ThreadSummary thread={thread} />
         ))}

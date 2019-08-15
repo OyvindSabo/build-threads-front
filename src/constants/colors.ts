@@ -49,6 +49,12 @@ export const BLUE_GREY = {
   900: '#263238',
 };
 
+export const TITLE_COLOR = BLUE_GREY[800];
+
+export const BACKGROUND_COLOR = BLUE_GREY[50];
+
 export const INPUT_COLOR = BLUE_GREY[50];
 
 export const SHADOW_COLOR = BLUE_GREY[100];
+
+export const SPINNER_COLOR = BLUE_GREY[100];
