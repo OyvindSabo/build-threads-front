@@ -6,6 +6,8 @@ export type ApiError = {
   };
 };
 
+export type AuthenticationError = ApiError;
+
 export type Thread = {
   id: 15;
   date: Date;

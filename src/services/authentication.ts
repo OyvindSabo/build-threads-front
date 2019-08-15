@@ -1,4 +1,8 @@
-class User {
+import { API_URL } from '../constants/api';
+import { ApiError, User } from '../types';
+import { reject } from 'q';
+
+class CurrentUser {
   _user: {
     id?: number;
     username?: string;
@@ -16,10 +20,14 @@ class User {
   getUser = () => this._user;
   isAuthenticated = () =>
     !!(this._user.id && this._user.username && this._user.password);
-  async login(username: string, password: string) {
-    console.log('user');
+
+  async login(
+    id: number,
+    username: string,
+    password: string
+  ): Promise<ApiError | void> {
     Object.assign(this._user, {
-      id: 1, // id should be fetched from user api based on username
+      id,
       username,
       password,
     });
@@ -28,6 +36,7 @@ class User {
     localStorage.setItem('password', `${this._user.password}`);
     window.dispatchEvent(this._authenticationUpdateEvent);
   }
+
   logout = () => {
     Object.assign(this._user, {
       id: undefined,
@@ -41,4 +50,4 @@ class User {
   };
 }
 
-export const currentUser = new User();
+export const currentUser = new CurrentUser();
