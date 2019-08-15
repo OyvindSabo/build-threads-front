@@ -50,3 +50,5 @@ export const BLUE_GREY = {
 };
 
 export const INPUT_COLOR = BLUE_GREY[50];
+
+export const SHADOW_COLOR = BLUE_GREY[100];

@@ -7,7 +7,6 @@ import { PADDING, FONT_SIZE } from '../../constants/sizes';
 import Shadow from '../shadow/Shadow';
 
 const ShadowBar = styled(Shadow)`
-  box-shadow: 0 0 5px ${GREY};
   position: fixed;
   background: white;
   top: 0;
