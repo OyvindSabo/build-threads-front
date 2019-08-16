@@ -1,24 +1,40 @@
-import React from 'react';
-import logo from '../../logo.svg';
+import React, { useState, useEffect, FunctionComponent } from 'react';
+import Spinner from '../../components/spinner/Spinner';
+import { API_URL } from '../../constants/api';
+import MainContainer from '../../components/mainContainer/MainContainer';
+import TopBar from '../../components/topBar/TopBar';
+import PostSummary from '../../components/postSummary/PostSummary';
 
-const Home: React.FC = () => {
+const Home: FunctionComponent = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingFailed, setLoadingFailed] = useState(false);
+  const [posts, setPosts] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch(`${API_URL}/wp-json/wp/v2/posts`).then(response =>
+      response
+        .json()
+        .then(formattedResponse => {
+          setIsLoading(false);
+          setPosts(formattedResponse);
+        })
+        .catch(error => {
+          setLoadingFailed(true);
+        })
+    );
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/home/Home.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <TopBar title={'Recent posts'} />
+      <MainContainer>
+        {isLoading && <Spinner />}
+        {loadingFailed && <div>Loading failed</div>}
+        {posts.map(post => (
+          <PostSummary post={post} />
+        ))}
+      </MainContainer>
+    </>
   );
 };
 

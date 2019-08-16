@@ -64,7 +64,7 @@ const ThreadView: FunctionComponent<ThreadViewProps> = ({ match }) => {
 
   return (
     <>
-      <TopBar title={thread ? thread.title.rendered : 'Loading'} />
+      <TopBar title={thread ? thread.title.rendered : 'Loading...'} />
       <MainContainer>
         {isLoading && <Spinner />}
         {loadingFailed && <div>Loading failed</div>}

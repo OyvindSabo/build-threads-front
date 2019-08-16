@@ -10,15 +10,15 @@ interface ProfilePictureProps {
   size: 24 | 48 | 96;
 }
 
-const ProfilePicture: FunctionComponent<ProfilePictureProps> = ({
+const Username: FunctionComponent<ProfilePictureProps> = ({
   userId,
-  size,
 }: ProfilePictureProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingFailed, setLoadingFailed] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
+    getUserByUserId(userId);
     fetch(`${API_URL}/wp-json/wp/v2/users/${userId}`).then(response =>
       response
         .json()
@@ -36,14 +36,8 @@ const ProfilePicture: FunctionComponent<ProfilePictureProps> = ({
   }, [userId]);
 
   return (
-    <Link to={`/profiles/${userId}`}>
-      {user ? (
-        <img src={user!.avatar_urls[size]} alt="User Avatar" />
-      ) : (
-        <ImageSpinner height={size} width={size} />
-      )}
-    </Link>
+    <Link to={`/profiles/${userId}`}>{user ? user.name : 'Loading...'}</Link>
   );
 };
 
-export default ProfilePicture;
+export default Username;

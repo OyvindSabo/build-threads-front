@@ -1,9 +1,8 @@
-import React, { FunctionComponent, useState, useEffect } from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import Shadow from '../shadow/Shadow';
 import { Link } from 'react-router-dom';
-import { Thread, User, ApiError } from '../../types';
-import { API_URL } from '../../constants/api';
+import { Thread } from '../../types';
 import ProfilePicture from '../profilePicture/ProfilePicture';
 
 const ShadowBox = styled(Shadow)`
