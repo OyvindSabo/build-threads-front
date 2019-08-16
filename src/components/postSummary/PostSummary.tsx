@@ -6,6 +6,7 @@ import { Thread, User, ApiError, Post } from '../../types';
 import { API_URL } from '../../constants/api';
 import ProfilePicture from '../profilePicture/ProfilePicture';
 import FeaturedImage from '../featuredImage/FeaturedImage';
+import Username from '../username/Username';
 
 const ShadowBox = styled(Shadow)`
   margin: 20px;
@@ -21,9 +22,9 @@ const PostSummary: FunctionComponent<ThreadSummaryProps> = ({ post }) => (
   <Link to={`/threads/${post.thread_references[0]}`}>
     <ShadowBox>
       {<FeaturedImage postId={post.id} />}
-      <ProfilePicture userId={post.author} size={48} />
-      {post.title.rendered}
-      {/*<Username userId={post.author} />*/}
+      {<Username userId={post.author} />}{' '}
+      {`added a new post to ${post.thread_references /*thread name*/}`}
+      <h1>{post.title.rendered}</h1>
       {/*<PostExcerpt postId={post.id} />*/}
     </ShadowBox>
   </Link>

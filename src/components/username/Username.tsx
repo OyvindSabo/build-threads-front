@@ -5,14 +5,13 @@ import { API_URL } from '../../constants/api';
 import ImageSpinner from '../imageSpinner/ImageSpinner';
 import { getUserByUserId } from '../../services/apiServices';
 
-interface ProfilePictureProps {
+interface UsernameProps {
   userId: number;
-  size: 24 | 48 | 96;
 }
 
-const Username: FunctionComponent<ProfilePictureProps> = ({
+const Username: FunctionComponent<UsernameProps> = ({
   userId,
-}: ProfilePictureProps) => {
+}: UsernameProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingFailed, setLoadingFailed] = useState(false);
   const [user, setUser] = useState<User | null>(null);
