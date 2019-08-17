@@ -1,14 +1,19 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { ApiError, Media, Post, Thread } from '../../types';
 import { API_URL } from '../../constants/api';
-import ImageSpinner from '../imageSpinner/ImageSpinner';
+import styled from 'styled-components';
+import { THREAD_NAME_COLOR } from '../../constants/colors';
+import UnstyledLink from '../unstyledLink/UnstyledLink';
 
-interface FeaturedImageProps {
+const ThreadNameStyle = styled.h3`
+  color: ${THREAD_NAME_COLOR};
+`;
+
+interface ThreadNameProps {
   post: Post;
 }
 
-const FeaturedImage: FunctionComponent<FeaturedImageProps> = ({ post }) => {
+const ThreadName: FunctionComponent<ThreadNameProps> = ({ post }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingFailed, setLoadingFailed] = useState(false);
   const [media, setMedia] = useState<Media[]>([]);
@@ -54,20 +59,19 @@ const FeaturedImage: FunctionComponent<FeaturedImageProps> = ({ post }) => {
   }, [post]);
 
   return (
-    <>
-      {media.length && thread ? (
-        <Link to={`/threads/${thread.id}`}>
-          <img
-            style={{ width: '100%' }}
-            src={media[0].media_details.sizes.medium_large.source_url}
-            alt="Featured image"
-          />
-        </Link>
+    <ThreadNameStyle>
+      {thread ? (
+        <UnstyledLink
+          style={{ textDecoration: 'none' }}
+          to={`/threads/${thread.id}`}
+        >
+          {thread.title.rendered}
+        </UnstyledLink>
       ) : (
-        <ImageSpinner />
+        'Loading...'
       )}
-    </>
+    </ThreadNameStyle>
   );
 };
 
-export default FeaturedImage;
+export default ThreadName;

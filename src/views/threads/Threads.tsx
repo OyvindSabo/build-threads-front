@@ -17,8 +17,8 @@ const ThreadsView: FunctionComponent = () => {
         .then(formattedResponse => {
           // The impotant parts are title.rendered: string, featured_media: number, slug: string, and author? autor should be used to determine if posts are comments or part of the thread.
           console.log('formattedResponse: ', formattedResponse);
-          setIsLoading(false);
           setThreads(formattedResponse);
+          setIsLoading(false);
         })
         .catch(error => {
           setLoadingFailed(true);

@@ -47,11 +47,11 @@ const ThreadView: FunctionComponent<ThreadViewProps> = ({ match }) => {
             ).then(posts => {
               posts.json().then((formattedPosts: Post[] | ApiError) => {
                 console.log('formattedPosts: ', formattedPosts);
-                setIsLoading(false);
                 if ((formattedThread as ApiError).message) {
                   throw new Error((formattedThread as ApiError).message);
                 }
                 setPosts(formattedPosts as Post[]);
+                setIsLoading(false);
               });
             });
           }
