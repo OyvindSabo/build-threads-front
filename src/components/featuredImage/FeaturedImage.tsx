@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ApiError, Media, Post, Thread } from '../../types';
 import { API_URL } from '../../constants/api';
 import ImageSpinner from '../imageSpinner/ImageSpinner';
+import FadeIn from '../appearanceAnimations/FadeIn';
 
 interface FeaturedImageProps {
   post: Post;
@@ -57,15 +58,15 @@ const FeaturedImage: FunctionComponent<FeaturedImageProps> = ({ post }) => {
     <>
       {media.length && thread ? (
         <Link to={`/threads/${thread.id}`}>
-          <img
-            style={{ width: '100%' }}
-            src={media[0].media_details.sizes.medium_large.source_url}
-            alt="Featured image"
-          />
+          <FadeIn>
+            <img
+              style={{ width: '100%' }}
+              src={media[0].media_details.sizes.medium_large.source_url}
+              alt="Featured image"
+            />
+          </FadeIn>
         </Link>
-      ) : (
-        <ImageSpinner />
-      )}
+      ) : null}
     </>
   );
 };
