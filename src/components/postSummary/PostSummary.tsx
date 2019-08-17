@@ -8,6 +8,8 @@ import ProfilePicture from '../profilePicture/ProfilePicture';
 import FeaturedImage from '../featuredImage/FeaturedImage';
 import Username from '../username/Username';
 import ThreadName from '../threadName/ThreadName';
+import PostTitle from '../postTitle/PostTitle';
+import PostDate from '../postDate/PostDate';
 
 const ShadowBox = styled(Shadow)`
   margin: 20px;
@@ -48,11 +50,12 @@ const PostSummary: FunctionComponent<ThreadSummaryProps> = ({ post }) => {
 
   return (
     <ShadowBox>
-      {<FeaturedImage post={post} />}
-      {<ThreadName post={post} />}
-      {<Username userId={post.author} />}{' '}
-      {`added a new post to ${post.thread_references /*thread name*/}`}
-      <h1>{post.title.rendered}</h1>
+      <FeaturedImage post={post} />
+      <ThreadName post={post} />
+      <PostTitle post={post} />
+      <Username userId={post.author} />
+      <br />
+      <PostDate post={post} />
       {/*<PostExcerpt postId={post.id} />*/}
     </ShadowBox>
   );

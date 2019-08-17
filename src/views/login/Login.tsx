@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { LIGHT_BLUE, INPUT_COLOR } from '../../constants/colors';
 import WidgetContainer from '../../components/widgetContainer/WidgetContainer';
 import Shadow from '../../components/shadow/Shadow';
-import { ApiError, AuthenticationError, User } from '../../types';
+import { ApiError, User } from '../../types';
 import { API_URL } from '../../constants/api';
 
 const ShadowBox = styled(Shadow)`

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { User, ApiError } from '../../types';
 import { API_URL } from '../../constants/api';
 import ImageSpinner from '../imageSpinner/ImageSpinner';
-import { getUserByUserId } from '../../services/apiServices';
 
 interface ProfilePictureProps {
   userId: number;
