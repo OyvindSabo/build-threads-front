@@ -11,6 +11,7 @@ import ThreadName from '../threadName/ThreadName';
 import PostTitle from '../postTitle/PostTitle';
 import PostDate from '../postDate/PostDate';
 import FadeIn from '../appearanceAnimations/FadeIn';
+import PostExcerpt from '../postExcerpt/PostExcerpt';
 
 const ShadowBox = styled(Shadow)`
   margin: 20px;
@@ -55,10 +56,15 @@ const PostSummary: FunctionComponent<ThreadSummaryProps> = ({ post }) => {
         <FeaturedImage post={post} />
         <ThreadName post={post} />
         <PostTitle post={post} />
-        <Username userId={post.author} />
-        <br />
-        <PostDate post={post} />
-        {/*<PostExcerpt postId={post.id} />*/}
+        <p>
+          <Username userId={post.author} />
+        </p>
+        <p>
+          <PostDate post={post} />
+        </p>
+        <p>
+          <PostExcerpt post={post} />
+        </p>
       </ShadowBox>
     </FadeIn>
   );

@@ -4,6 +4,7 @@ import Shadow from '../shadow/Shadow';
 import { Link } from 'react-router-dom';
 import { Thread } from '../../types';
 import ProfilePicture from '../profilePicture/ProfilePicture';
+import FadeIn from '../appearanceAnimations/FadeIn';
 
 const ShadowBox = styled(Shadow)`
   margin: 20px;
@@ -17,10 +18,12 @@ interface ThreadSummaryProps {
 
 const ThreadSummary: FunctionComponent<ThreadSummaryProps> = ({ thread }) => (
   <Link to={`/threads/${thread.id}`}>
-    <ShadowBox>
-      <ProfilePicture userId={thread.author} size={48} />
-      {thread.title.rendered}
-    </ShadowBox>
+    <FadeIn>
+      <ShadowBox>
+        <ProfilePicture userId={thread.author} size={48} />
+        {thread.title.rendered}
+      </ShadowBox>
+    </FadeIn>
   </Link>
 );
 

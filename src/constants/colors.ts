@@ -64,6 +64,8 @@ export const TITLE_COLOR = BLUE_GREY[800];
 
 export const DATE_COLOR = BLUE_GREY[500];
 
+export const EXCERPT_COLOR = BLUE_GREY[800];
+
 export const THREAD_NAME_COLOR = PINK[800];
 
 export const BACKGROUND_COLOR = BLUE_GREY[50];
